@@ -51,10 +51,6 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
-
   # Render views globally
   config.render_views
 
@@ -68,4 +64,3 @@ RSpec.configure do |config|
 end
 
 Capybara.javascript_driver = :webkit
-
