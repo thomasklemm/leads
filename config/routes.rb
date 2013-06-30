@@ -1,14 +1,4 @@
 Leads::Application.routes.draw do
-
-  resources :twitter_accounts, only: [:index, :show, :new, :destroy]
-
-  # Omniauth to authorize Twitter accounts
-  #  There is a hidden 'auth/twitter' path too that requests can be directed to
-  #  when trying to authorize a Twitter account with this application
-  get 'auth/twitter/callback' => 'omniauth#twitter'
-  get 'auth/failure'          => 'omniauth#failure'
-
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
