@@ -2,10 +2,17 @@ class Author < ActiveRecord::Base
   has_many :tweets, dependent: :restrict_with_exception
 
   # Returns an author record
-  def self.from_twitter(user)
+  def self.from_twitter(user, opts={})
+    return unless user
+
     author = self.find_or_create_by(twitter_id: user.id)
     author.assign_fields(user)
-    author.save! and author
+    author.save!
+
+    # Free embeded status
+    Tweet.from_twitter(user.status, author) unless opts[:skip_status]
+
+    author
   rescue ActiveRecord::RecordNotUnique
     retry
   end
@@ -27,5 +34,33 @@ class Author < ActiveRecord::Base
     self.verified = user.verified
     self.following = user.following
     self
+  end
+
+  def at_screen_name
+    "@#{ screen_name }"
+  end
+
+  def twitter_url
+    "https://twitter.com/#{ screen_name }"
+  end
+
+  def sources
+    @sources ||= sources!
+  end
+
+  def sources!
+    sources = tweets.group("source").count.sort_by(&:last).reverse
+    sources &&= sources.map{ |source, count| [ source, ActionController::Base.helpers.number_to_percentage((count * 100 / sources.map(&:last).sum.to_f), precision: 0) ] }
+    sources.map{ |source, percentage| "#{ percentage } #{ source }" }.to_sentence.html_safe
+  end
+
+  def mark_as_lead!
+    self.lead = true
+    save!
+    self
+  end
+
+  def to_param
+    screen_name
   end
 end

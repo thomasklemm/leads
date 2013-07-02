@@ -4,6 +4,7 @@ describe Author do
   describe ".from_twitter(Twitter::User.new)" do
     it "creates the given author and assigns fields" do
       VCR.use_cassette('users/37signals') do
+        # Author
         user = Twitter.user('37signals')
         author = Author.from_twitter(user)
 
@@ -24,6 +25,14 @@ describe Author do
         expect(author.following).to eq(user.following)
 
         expect{ Author.from_twitter(user) }.to_not raise_error
+
+        # Free tweet
+        status = user.status
+        tweet = author.tweets.first
+
+        expect(tweet.text).to eq(status.text)
+
+        expect{ Tweet.from_twitter(status) }.to_not raise_error
       end
     end
   end

@@ -1,0 +1,32 @@
+h1 Authors
+
+table class='table table-hover'
+  thead
+    tr
+      th screen_name
+      th name
+      th lead
+      th lang
+      th followers
+      th statuses
+      th sources
+      th
+  tbody
+    - @authors.each do |author|
+      tr
+        td
+          = link_to author.at_screen_name, author
+          | &nbsp;
+          = link_to 'Twitter', author.twitter_url
+        td = author.name
+        td
+          = link_to 'Good LEAD', author, class: 'btn btn-success' if author.lead?
+        td = author.lang
+        td = author.followers_count
+        td = author.statuses_count
+        td
+          ' From #{ author.tweets.count } tweets:
+          = author.sources
+        td
+          = link_to 'Fetch tweets', [:fetch_user_timeline, author], method: :patch, class: 'btn'
+          = link_to 'Mark as LEAD', [:mark_as_lead, author], method: :patch, class: 'btn'

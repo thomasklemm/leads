@@ -3,9 +3,9 @@
   .navbar-inner
     = link_to 'Tweetbox Leads', root_path, class: 'brand'
 
-    / ul.nav
-    /   - if user_signed_in?
-    /     li = link_to 'Authors', authors_path
+    ul.nav
+      li = link_to 'Leads', leads_authors_path
+      li = link_to 'Authors', authors_path
 
     / .right
     /   ul.nav

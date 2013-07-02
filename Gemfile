@@ -28,11 +28,18 @@ gem 'turbolinks'
 # gem 'jbuilder', '~> 1.2'
 
 gem 'figaro'
+
 gem 'twitter'
+gem 'oj'
+
 gem 'slim-rails'
 gem 'bootstrap-sass', '~> 2.3.2.0'
+
 gem 'pry'
-# gem 'oj'
+gem 'pry-rails', group: :development
+
+gem 'chartkick'
+
 # gem 'sequel'
 
 # gem 'clearance' or 'devise' for authentication,

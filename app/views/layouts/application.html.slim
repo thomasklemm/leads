@@ -2,7 +2,11 @@ doctype html
 head
   title Tweetbox Leads
   = stylesheet_link_tag "application", media: "all"
+
+  / chartkick
+  = javascript_include_tag "//www.google.com/jsapi", "chartkick"
   = javascript_include_tag "application"
+
   = csrf_meta_tags
 
 body

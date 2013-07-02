@@ -1,5 +1,19 @@
 h1 Authors#show
 p Find me in app/views/authors/show.html.slim
 
+= link_to 'Mark as LEAD', [:mark_as_lead, @author], method: :patch, class: 'btn'
+
 = debug @author
+
+.sources
+  ' From #{ @author.tweets.count } tweets:
+  = @author.sources
+  br
+  = link_to 'Fetch more tweets', [:fetch_user_timeline, @author], method: :patch, class: 'btn'
+
+
+- sources = @author.tweets.group("source").count
+= pie_chart sources
+
+
 = debug @author.tweets

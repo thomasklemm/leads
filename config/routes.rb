@@ -1,7 +1,18 @@
 Leads::Application.routes.draw do
 
   # Authors
-  resources :authors, only: :show
+  resources :authors, only: [:index, :show] do
+    collection do
+      get :leads
+    end
+
+    member do
+      patch :fetch_user_timeline
+      patch :mark_as_lead
+    end
+  end
+
+  root 'authors#leads'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
