@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20130630212901) do
     t.text     "description"
     t.text     "location"
     t.text     "profile_image_url"
+    t.text     "url"
     t.integer  "followers_count",             default: 0
     t.integer  "statuses_count",              default: 0
     t.integer  "friends_count",               default: 0
@@ -32,6 +33,10 @@ ActiveRecord::Schema.define(version: 20130630212901) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "authors", ["followers_count"], name: "index_authors_on_followers_count", using: :btree
+  add_index "authors", ["screen_name"], name: "index_authors_on_screen_name", using: :btree
+  add_index "authors", ["twitter_id"], name: "index_authors_on_twitter_id", unique: true, using: :btree
 
   create_table "tweets", force: true do |t|
     t.integer  "twitter_id",            limit: 8
@@ -46,5 +51,6 @@ ActiveRecord::Schema.define(version: 20130630212901) do
   end
 
   add_index "tweets", ["author_id"], name: "index_tweets_on_author_id", using: :btree
+  add_index "tweets", ["twitter_id"], name: "index_tweets_on_twitter_id", unique: true, using: :btree
 
 end

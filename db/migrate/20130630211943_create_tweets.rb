@@ -16,6 +16,7 @@ class CreateTweets < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :tweets, :twitter_id, unique: true
     add_index :tweets, :author_id
   end
 end

@@ -9,6 +9,7 @@ class CreateAuthors < ActiveRecord::Migration
       t.text :description
       t.text :location
       t.text :profile_image_url
+      t.text :url
 
       t.integer :followers_count, default: 0
       t.integer :statuses_count, default: 0
@@ -26,5 +27,9 @@ class CreateAuthors < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :authors, :twitter_id, unique: true
+    add_index :authors, :screen_name
+    add_index :authors, :followers_count
   end
 end

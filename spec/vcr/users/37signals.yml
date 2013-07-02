@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/users/show.json?screen_name=37signals
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Twitter Ruby Gem 4.8.1
+      Authorization:
+      - OAuth oauth_consumer_key="<TWITTER_CONSUMER_KEY>", oauth_nonce="9abdef3f8cdc9f905e1fb454e3cf4c21",
+        oauth_signature="3%2FH9sExlehCCPxoERWq9zRzo4tk%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1372662821", oauth_token="<TWITTER_OAUTH_TOKEN>", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Length:
+      - '992'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Mon, 01 Jul 2013 07:13:42 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Mon, 01 Jul 2013 07:13:42 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tfe
+      Set-Cookie:
+      - guest_id=v1%3A137266282248329384; Domain=.twitter.com; Path=/; Expires=Wed,
+        01-Jul-2015 07:13:42 UTC
+      - lang=en
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '180'
+      X-Rate-Limit-Remaining:
+      - '178'
+      X-Rate-Limit-Reset:
+      - '1372663695'
+      X-Transaction:
+      - 79639227c5629be8
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: UTF-8
+      string: '{"id":11132462,"id_str":"11132462","name":"37signals","screen_name":"37signals","location":"Chicago,
+        IL","description":"News on 37signals products and more. We''re here to answer
+        your questions Mon-Fri 9am-6pm CT!","url":"http:\/\/t.co\/ETXlEIHMMA","entities":{"url":{"urls":[{"url":"http:\/\/t.co\/ETXlEIHMMA","expanded_url":"http:\/\/37signals.com","display_url":"37signals.com","indices":[0,22]}]},"description":{"urls":[]}},"protected":false,"followers_count":95942,"friends_count":37,"listed_count":6154,"created_at":"Thu
+        Dec 13 16:27:41 +0000 2007","favourites_count":38,"utc_offset":-21600,"time_zone":"Central
+        Time (US & Canada)","geo_enabled":false,"verified":false,"statuses_count":21560,"lang":"en","status":{"created_at":"Sun
+        Jun 30 10:39:26 +0000 2013","id":351288864507310080,"id_str":"351288864507310080","text":"@mdh
+        Hey Mark, that page was down due to a configuration error. We''ve got things
+        fixed up on our end and it should be working normally now!","source":"web","truncated":false,"in_reply_to_status_id":350739173017268225,"in_reply_to_status_id_str":"350739173017268225","in_reply_to_user_id":7919632,"in_reply_to_user_id_str":"7919632","in_reply_to_screen_name":"mdh","geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"symbols":[],"urls":[],"user_mentions":[{"screen_name":"mdh","name":"mark
+        hurty","id":7919632,"id_str":"7919632","indices":[0,4]}]},"favorited":false,"retweeted":false,"lang":"en"},"contributors_enabled":false,"is_translator":false,"profile_background_color":"FFFFFF","profile_background_image_url":"http:\/\/a0.twimg.com\/profile_background_images\/646827914\/ej1jsntvrgl3djfh2isb.gif","profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/646827914\/ej1jsntvrgl3djfh2isb.gif","profile_background_tile":false,"profile_image_url":"http:\/\/a0.twimg.com\/profile_images\/52399095\/37_normal.png","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/52399095\/37_normal.png","profile_link_color":"40C4F3","profile_sidebar_border_color":"000000","profile_sidebar_fill_color":"FFFFFF","profile_text_color":"000000","profile_use_background_image":true,"default_profile":false,"default_profile_image":false,"following":true,"follow_request_sent":false,"notifications":false}'
+    http_version: 
+  recorded_at: Mon, 01 Jul 2013 07:13:42 GMT
+recorded_with: VCR 2.5.0
