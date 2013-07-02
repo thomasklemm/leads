@@ -31,6 +31,11 @@ gem 'figaro'
 gem 'twitter'
 gem 'slim-rails'
 gem 'bootstrap-sass', '~> 2.3.2.0'
+gem 'pry'
+# gem 'sequel'
+
+# gem 'clearance' or 'devise' for authentication,
+# or even just http basic. I'd prefer clearance or http basic
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

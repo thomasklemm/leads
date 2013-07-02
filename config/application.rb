@@ -34,5 +34,11 @@ module Leads
       g.javascript_engine false
       g.view_specs false
     end
+
+    # Use Pry for console
+    console do
+      require "pry"
+      config.console = Pry
+    end
   end
 end
