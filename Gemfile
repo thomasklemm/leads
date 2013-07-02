@@ -32,6 +32,7 @@ gem 'twitter'
 gem 'slim-rails'
 gem 'bootstrap-sass', '~> 2.3.2.0'
 gem 'pry'
+gem 'oj'
 # gem 'sequel'
 
 # gem 'clearance' or 'devise' for authentication,

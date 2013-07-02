@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Author do
   describe ".from_twitter(Twitter::User.new)" do
     it "creates the given author and assigns fields" do
-      VCR.use_cassette('users/37signals', allow_playback_repeats: true) do
+      VCR.use_cassette('users/37signals') do
         user = Twitter.user('37signals')
         author = Author.from_twitter(user)
 
