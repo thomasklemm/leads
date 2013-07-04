@@ -1,4 +1,8 @@
 class Author < ActiveRecord::Base
+  # Kaminari
+  paginates_per 100
+  max_paginates_per 250
+
   has_many :tweets, dependent: :restrict_with_exception
 
   # Returns an author record
@@ -51,7 +55,8 @@ class Author < ActiveRecord::Base
   def sources!
     sources = tweets.group("source").count.sort_by(&:last).reverse
     sources &&= sources.map{ |source, count| [ source, ActionController::Base.helpers.number_to_percentage((count * 100 / sources.map(&:last).sum.to_f), precision: 0) ] }
-    sources.map{ |source, percentage| "#{ percentage } #{ source }" }.to_sentence.html_safe
+    sources &&= sources.map{ |source, percentage| "#{ percentage } #{ source }" }
+    sources.to_sentence(words_connector: ',<br>', two_words_connector: ',<br>', last_word_connector: ',<br>').html_safe
   end
 
   def mark_as_lead!

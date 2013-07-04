@@ -1,11 +1,23 @@
 class AuthorsController < ApplicationController
   before_action :load_author, only: [:show, :fetch_user_timeline, :mark_as_lead]
   def index
-    @authors = Author.order(statuses_count: :desc).where(lang: 'de').limit(100)
+    @q = Author.search(params[:q])
+    @authors = @q.result.page(params[:page])
+    @q.build_condition if @q.conditions.empty?
+    @q.build_sort if @q.sorts.empty?
+
+    @authors ||= Author.order(statuses_count: :desc).where(lang: 'de').page(params[:page])
   end
 
   def leads
+    index
+
     @authors = Author.where(lead: true)
+    render :index
+  end
+
+  def search
+    index
     render :index
   end
 
@@ -28,6 +40,13 @@ class AuthorsController < ApplicationController
   private
 
   def load_author
-    @author = Author.find_by(screen_name: params[:id])
+    @author = Author.find_by!(screen_name: params[:id])
+  rescue ActiveRecord::RecordNotFound
+    begin
+      user = Twitter.user(params[:id])
+      @author = Author.from_twitter(user)
+    rescue Twitter::Error::NotFound
+      redirect_to authors_path, alert: "Author #{ params[:id] } could not be found on Twitter."
+    end
   end
 end

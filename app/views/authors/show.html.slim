@@ -6,7 +6,8 @@ p Find me in app/views/authors/show.html.slim
 = debug @author
 
 .sources
-  ' From #{ @author.tweets.count } tweets:
+  ' Analyzing #{ @author.tweets.count } tweets:
+  br
   = @author.sources
   br
   = link_to 'Fetch more tweets', [:fetch_user_timeline, @author], method: :patch, class: 'btn'

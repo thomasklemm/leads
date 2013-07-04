@@ -39,6 +39,9 @@ gem 'pry'
 gem 'pry-rails', group: :development
 
 gem 'chartkick'
+gem 'puma'
+gem 'kaminari'
+gem 'ransack', github: 'ernie/ransack', branch: 'rails-4'
 
 # gem 'sequel'
 

@@ -4,6 +4,7 @@ Leads::Application.routes.draw do
   resources :authors, only: [:index, :show] do
     collection do
       get :leads
+      match :search, via: [:get, :post], as: :search
     end
 
     member do
@@ -12,7 +13,7 @@ Leads::Application.routes.draw do
     end
   end
 
-  root 'authors#leads'
+  root 'authors#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
