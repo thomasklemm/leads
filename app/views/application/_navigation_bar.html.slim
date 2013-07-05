@@ -4,6 +4,11 @@
     .container
       = link_to 'Tweetbox Dash', root_path, class: 'brand'
 
+      .right
+        ul.nav
+          li = link_to 'Bookmarklet:', 'javascript:;'
+          li = link_to 'Open @user in Dash', "javascript:var screen_name = document.location.href.split('/')[3];window.open('https://tweetbox-dash.herokuapp.com/authors/'+screen_name);"
+
       / ul.nav
       /   li = link_to 'Leads', leads_authors_path
       /   li = link_to 'Authors', authors_path
