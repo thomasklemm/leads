@@ -14,7 +14,7 @@ class Tweet < ActiveRecord::Base
   end
 
   # Returns an array of tweet records
-  def self.many_from_twitter(*statuses)
+  def self.many_from_twitter(statuses)
     statuses.map { |status| from_twitter(status) }
   end
 
