@@ -2,6 +2,7 @@ doctype html
 head
   title Tweetbox Leads
   = stylesheet_link_tag "application", media: "all"
+  = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css'
 
   / chartkick
   = javascript_include_tag "//www.google.com/jsapi", "chartkick"
@@ -10,11 +11,12 @@ head
   = csrf_meta_tags
 
 body
-  = render 'navigation_bar'
-  = render 'flash_messages'
-  = yield
+  .container
+    = render 'navigation_bar'
+    = render 'flash_messages'
+    = yield
 
-  / LiveReload in development mode
-  - if Rails.env.development?
-    javascript:
-      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    / LiveReload in development mode
+    - if Rails.env.development?
+      javascript:
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')

@@ -13,6 +13,11 @@ class Tweet < ActiveRecord::Base
     retry
   end
 
+  # Returns an array of tweet records
+  def self.many_from_twitter(*statuses)
+    statuses.map { |status| from_twitter(status) }
+  end
+
   # Assigns fields from a Twitter::Tweet object
   def assign_fields(status)
     self.text = status.text

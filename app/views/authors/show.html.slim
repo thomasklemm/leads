@@ -1,20 +1,73 @@
-h1 Authors#show
-p Find me in app/views/authors/show.html.slim
+/ authors/show
 
-= link_to 'Mark as LEAD', [:mark_as_lead, @author], method: :patch, class: 'btn'
+.author
+  / author
+  = link_to @author.twitter_url do
+    = image_tag(@author.profile_image_url, class: 'avatar')
+    span.name = @author.name
+    span.screen-name = @author.at_screen_name
+    = link_to 'Update', @author, method: :patch, class: 'btn'
 
-= debug @author
+  .description = @author.linked_description
 
-.sources
-  ' Analyzing #{ @author.tweets.count } tweets:
-  br
-  = @author.sources
-  br
-  = link_to 'Fetch more tweets', [:fetch_user_timeline, @author], method: :patch, class: 'btn'
+  p
+    span.location = @author.location
+    '  &middot;
+    = link_to @author.url, @author.url, class: 'url'
 
+  .statistics
+    p
+      .stat
+        .key Tweets:
+        .value = @author.statuses_count
+      .stat
+        .key Followers:
+        .value = @author.followers_count
+      .stat
+        .key Friends:
+        .value = @author.friends_count
+    p
+      .stat
+        .key Joined Twitter On:
+        .value = @author.joined_twitter_on
+      .stat
+        .key Profile Language:
+        .value = @author.lang
+      .stat
+        .key Time Zone:
+        .value = @author.time_zone
+      - if @author.verified?
+        .stat
+          .key Verified:
+          .value true
 
-- sources = @author.tweets.group("source").count
-= pie_chart sources
+  / tweets
+  .tweets
+    h4
+      ' #{ @author.at_screen_name }'s Tweets
+      small #{ @author.tweets.size } tweets being analyzed
 
+    b Sources &nbsp;
+    = link_to 'Update', @author, method: :patch, class: 'btn'
+    .space-half
 
-= debug @author.tweets
+    .sources
+      = @author.sources
+
+    = pie_chart @author.grouped_tweets_sources, id: 'sources-chart'
+
+    b Last #{ @author.ordered_tweets.size } Statuses &nbsp;
+    = link_to 'Update', @author, method: :patch, class: 'btn'
+    .space-half
+
+    p % Responses: #{ @author.response_rate }
+
+    table class='tweets-table table'
+      tbody
+      - @author.ordered_tweets.each do |tweet|
+        tr.tweet
+          td = link_to icon_tag(:twitter), tweet.twitter_url, class: 'twitter-url'
+          td.text = tweet.text
+          td.source = tweet.source
+          td.created-at = tweet.created_at
+

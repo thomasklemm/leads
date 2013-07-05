@@ -23,8 +23,6 @@ class CreateAuthors < ActiveRecord::Migration
       t.boolean :verified
       t.boolean :following
 
-      t.integer :tweets_count, default: 0
-
       t.timestamps
     end
 

@@ -7,4 +7,16 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def link_twitter_text(text)
+    user_options = { username_include_symbol: true }
+    text = Twitter::Autolink.auto_link_urls(text, url_target: :blank)
+    text = Twitter::Autolink.auto_link_usernames_or_lists(text, user_options)
+    simple_format(text)
+  end
+
+  # Returns a font-awesome icon tag
+  def icon_tag(type, text=nil)
+    "<i class='icon-#{ type.to_s }'></i> #{ text }".html_safe
+  end
 end

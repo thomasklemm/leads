@@ -9,6 +9,9 @@ class CreateTweets < ActiveRecord::Migration
       t.integer :in_reply_to_status_id, limit: 8
 
       t.text :source
+      t.text :lang
+
+      t.integer :favorite_count, default: 0
       t.integer :retweet_count, default: 0
 
       t.integer :author_id

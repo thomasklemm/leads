@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130702224135) do
+ActiveRecord::Schema.define(version: 20130630212901) do
 
   create_table "authors", force: true do |t|
     t.integer  "twitter_id",        limit: 8
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20130702224135) do
     t.boolean  "following"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "lead",                        default: false
   end
 
   add_index "authors", ["followers_count"], name: "index_authors_on_followers_count", using: :btree
@@ -44,12 +43,12 @@ ActiveRecord::Schema.define(version: 20130702224135) do
     t.integer  "in_reply_to_user_id",   limit: 8
     t.integer  "in_reply_to_status_id", limit: 8
     t.text     "source"
+    t.text     "lang"
+    t.integer  "favorite_count",                  default: 0
     t.integer  "retweet_count",                   default: 0
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "lang"
-    t.integer  "favorite_count",                  default: 0
   end
 
   add_index "tweets", ["author_id"], name: "index_tweets_on_author_id", using: :btree

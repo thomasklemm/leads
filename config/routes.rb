@@ -1,17 +1,7 @@
 Leads::Application.routes.draw do
 
   # Authors
-  resources :authors, only: [:index, :show] do
-    collection do
-      get :leads
-      match :search, via: [:get, :post], as: :search
-    end
-
-    member do
-      patch :fetch_user_timeline
-      patch :mark_as_lead
-    end
-  end
+  resources :authors, only: [:show, :update]
 
   root 'authors#index'
 
