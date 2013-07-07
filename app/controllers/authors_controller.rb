@@ -14,11 +14,12 @@ class AuthorsController < ApplicationController
   def load_author
     @author = Author.find_by!(screen_name: params[:id]).decorate
   rescue ActiveRecord::RecordNotFound
-    fetch_author(params[:id])
+    @author = fetch_author(params[:id])
     sleep 3
-    retry
   end
 
+  # Fetches the author from Twitter
+  # Returns the author
   def fetch_author(screen_name)
     twitter_user = Twitter.user(screen_name)
     Author.from_twitter(twitter_user)
