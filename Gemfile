@@ -74,8 +74,10 @@ group :test do
   gem 'vcr'
 end
 
-# Heroku gem
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+  gem 'newrelic_rpm'
+end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

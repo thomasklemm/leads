@@ -106,6 +106,7 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.7.7)
     multipart-post (1.2.0)
+    newrelic_rpm (3.6.5.130)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     oj (2.1.4)
@@ -233,6 +234,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mocha
+  newrelic_rpm
   oj
   pg
   pry
