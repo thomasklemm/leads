@@ -15,7 +15,6 @@ class AuthorsController < ApplicationController
     @author = Author.find_by!(screen_name: params[:id]).decorate
   rescue ActiveRecord::RecordNotFound
     @author = fetch_author(params[:id])
-    sleep 3
   end
 
   # Fetches the author from Twitter
@@ -25,7 +24,7 @@ class AuthorsController < ApplicationController
     twitter_user = Twitter.user(screen_name)
     Author.from_twitter(twitter_user)
   rescue Twitter::Error::NotFound
-    redirect_to authors_path, alert: "@#{ screen_name } could not be found on Twitter."
+    redirect_to root_path, alert: "@#{ screen_name } could not be found on Twitter."
   end
 end
 
