@@ -21,6 +21,7 @@ class AuthorsController < ApplicationController
   # Fetches the author from Twitter
   # Returns the author
   def fetch_author(screen_name)
+    logger.info "Fetching @#{ screen_name } from Twitter."
     twitter_user = Twitter.user(screen_name)
     Author.from_twitter(twitter_user)
   rescue Twitter::Error::NotFound
