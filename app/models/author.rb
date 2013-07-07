@@ -21,6 +21,20 @@ class Author < ActiveRecord::Base
     retry
   end
 
+  # Returns an author record
+  # or nil if the user cannot be found on Twitter
+  def self.find_or_fetch_by_screen_name(screen_name)
+    author = find_by(screen_name: screen_name)
+    author ||= fetch_by_screen_name(screen_name)
+  end
+
+  def self.fetch_by_screen_name(screen_name)
+    twitter_user = Twitter.user(screen_name)
+    self.from_twitter(twitter_user)
+  rescue Twitter::Error::NotFound
+    nil
+  end
+
   # Assigns fields from a Twitter::User object
   def assign_fields(user)
     self.screen_name = user.screen_name
@@ -48,7 +62,16 @@ class Author < ActiveRecord::Base
     "https://twitter.com/#{ screen_name }"
   end
 
+  def fetch_user
+    user = Twitter.user(screen_name)
+    Author.from_twitter(user)
+  end
+
+  # Removes all current tweets
+  # and fetches the most recent 200 tweets for the given user
   def fetch_user_timeline
+    tweets.destroy_all
+
     statuses = Twitter.user_timeline(screen_name, count: 200)
     Tweet.many_from_twitter(statuses)
   end

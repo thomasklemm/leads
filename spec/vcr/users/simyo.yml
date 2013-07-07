@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/users/show.json?screen_name=simyo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Twitter Ruby Gem 4.8.1
+      Authorization:
+      - OAuth oauth_consumer_key="<TWITTER_CONSUMER_KEY>", oauth_nonce="3a58063cca91fe6ac244a046c96e4eea",
+        oauth_signature="StDFjJHYteMG2Ixbh9GCkni00iU%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1373231436", oauth_token="<TWITTER_OAUTH_TOKEN>", oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Length:
+      - '1103'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Sun, 07 Jul 2013 21:10:36 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Sun, 07 Jul 2013 21:10:36 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tfe
+      Set-Cookie:
+      - guest_id=v1%3A137323143642843773; Domain=.twitter.com; Path=/; Expires=Tue,
+        07-Jul-2015 21:10:36 UTC
+      - lang=en
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read-write-directmessages
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '180'
+      X-Rate-Limit-Remaining:
+      - '179'
+      X-Rate-Limit-Reset:
+      - '1373232336'
+      X-Transaction:
+      - 37dcb476210fb03e
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: UTF-8
+      string: '{"id":33878217,"id_str":"33878217","name":"simyo Deutschland","screen_name":"simyo","location":"D\u00fcsseldorf","description":"Der
+        offizielle simyo Deutschland Twitter-Account. http:\/\/t.co\/8wpTA0iKgd","url":"http:\/\/t.co\/LR5S23ZT1i","entities":{"url":{"urls":[{"url":"http:\/\/t.co\/LR5S23ZT1i","expanded_url":"http:\/\/www.simyo.de\/","display_url":"simyo.de","indices":[0,22]}]},"description":{"urls":[{"url":"http:\/\/t.co\/8wpTA0iKgd","expanded_url":"http:\/\/www.simyo.de\/de\/unternehmen\/impressum.html","display_url":"simyo.de\/de\/unternehmen\u2026","indices":[50,72]}]}},"protected":false,"followers_count":3753,"friends_count":1112,"listed_count":142,"created_at":"Tue
+        Apr 21 11:39:55 +0000 2009","favourites_count":246,"utc_offset":3600,"time_zone":"Berlin","geo_enabled":true,"verified":false,"statuses_count":3315,"lang":"de","status":{"created_at":"Fri
+        Jul 05 12:57:08 +0000 2013","id":353135458642952194,"id_str":"353135458642952194","text":"@ESchmatloch
+        Hallo Eva, besteht dieses Problem nur mit dem Bekannten aus Italien oder auch
+        mit Anderen? \/fg","source":"\u003ca href=\"http:\/\/www.tweetdeck.com\" rel=\"nofollow\"\u003eTweetDeck\u003c\/a\u003e","truncated":false,"in_reply_to_status_id":353131485882089475,"in_reply_to_status_id_str":"353131485882089475","in_reply_to_user_id":307890659,"in_reply_to_user_id_str":"307890659","in_reply_to_screen_name":"ESchmatloch","geo":null,"coordinates":null,"place":null,"contributors":null,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"symbols":[],"urls":[],"user_mentions":[{"screen_name":"ESchmatloch","name":"Eva
+        Schmatloch","id":307890659,"id_str":"307890659","indices":[0,12]}]},"favorited":false,"retweeted":false,"lang":"de"},"contributors_enabled":false,"is_translator":false,"profile_background_color":"E0E3E3","profile_background_image_url":"http:\/\/a0.twimg.com\/profile_background_images\/873901371\/ba4786c3fdb39fcc714c47304548e7bb.jpeg","profile_background_image_url_https":"https:\/\/si0.twimg.com\/profile_background_images\/873901371\/ba4786c3fdb39fcc714c47304548e7bb.jpeg","profile_background_tile":false,"profile_image_url":"http:\/\/a0.twimg.com\/profile_images\/195843444\/simyo_wallpaper_1920x1200_PNG_normal.png","profile_image_url_https":"https:\/\/si0.twimg.com\/profile_images\/195843444\/simyo_wallpaper_1920x1200_PNG_normal.png","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/33878217\/1367598366","profile_link_color":"DB5C07","profile_sidebar_border_color":"FFFFFF","profile_sidebar_fill_color":"F2EFEA","profile_text_color":"3C3940","profile_use_background_image":true,"default_profile":false,"default_profile_image":false,"following":false,"follow_request_sent":false,"notifications":false}'
+    http_version: 
+  recorded_at: Sun, 07 Jul 2013 21:10:37 GMT
+recorded_with: VCR 2.5.0

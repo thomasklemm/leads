@@ -6,7 +6,7 @@
 ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
+# require 'rspec/autorun'
 
 # Requires namespaced models and controllers
 Dir[Rails.root.join("app/controllers/**/*.rb")].each {|f| require f}
