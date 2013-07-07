@@ -12,15 +12,11 @@ class AuthorsController < ApplicationController
   private
 
   def load_author
-    load_and_decorate_author
+    @author = Author.find_by!(screen_name: params[:id]).decorate
   rescue ActiveRecord::RecordNotFound
     fetch_author(params[:id])
-    load_and_decorate_author
-  end
-
-  def load_and_decorate_author
-    @author = Author.find_by!(screen_name: params[:id])
-    @author &&= @author.decorate
+    sleep 3
+    retry
   end
 
   def fetch_author(screen_name)
