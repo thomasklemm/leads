@@ -3,18 +3,18 @@ require 'spec_helper'
 describe Author do
   describe ".from_twitter(Twitter::User.new)" do
     it "creates the given author and assigns fields" do
-      VCR.use_cassette('users/37signals') do
+      VCR.use_cassette('users/simyo') do
         # Author
-        user = Twitter.user('37signals')
+        user = Twitter.user('simyo')
         author = Author.from_twitter(user)
 
         expect(author.twitter_id).to eq(user.id)
         expect(author.screen_name).to eq(user.screen_name)
         expect(author.name).to eq(user.name)
-        expect(author.description).to eq(user.description)
+        expect(author.description).to eq("Der offizielle simyo Deutschland Twitter-Account. http://www.simyo.de/de/unternehmen/impressum.html") # expanded url
         expect(author.location).to eq(user.location)
         expect(author.profile_image_url).to eq(user.profile_image_url_https)
-        expect(author.url).to eq(user.url)
+        expect(author.url).to eq("http://www.simyo.de/") # expanded url
         expect(author.followers_count).to eq(user.followers_count)
         expect(author.statuses_count).to eq(user.statuses_count)
         expect(author.friends_count).to eq(user.friends_count)

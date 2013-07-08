@@ -25,6 +25,6 @@ describe 'Author' do
     end
 
     expect(page).to have_content("@simyo has been updated from Twitter.")
-    expect(page).to have_content("200 tweets being analyzed")
+    expect(page).to have_content("5 tweets being analyzed")
   end
 end
