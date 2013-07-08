@@ -9,6 +9,8 @@ describe Tweet do
         tweet = Tweet.from_twitter(status)
 
         expect(tweet.twitter_id).to eq(status.id)
+        expect(tweet.text).to_not eq(status.text) # has expanded urls 
+        expect(tweet.text).to eq(Tweet.new.expand_urls(status.text, status.urls)) 
         expect(tweet.in_reply_to_user_id).to eq(status.in_reply_to_user_id)
         expect(tweet.in_reply_to_status_id).to eq(status.in_reply_to_status_id)
         expect(tweet.source).to eq(status.source)

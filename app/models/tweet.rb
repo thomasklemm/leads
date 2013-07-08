@@ -1,4 +1,6 @@
 class Tweet < ActiveRecord::Base
+  include UrlExpander
+
   belongs_to :author
 
   # Returns a tweet record
@@ -20,7 +22,7 @@ class Tweet < ActiveRecord::Base
 
   # Assigns fields from a Twitter::Tweet object
   def assign_fields(status)
-    self.text = status.text
+    self.text = expand_urls(status.text, status.urls)
     self.in_reply_to_user_id = status.in_reply_to_user_id
     self.in_reply_to_status_id = status.in_reply_to_status_id
     self.source = status.source
