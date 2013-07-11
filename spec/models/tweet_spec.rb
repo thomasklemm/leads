@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Tweet do
   describe ".from_twitter(Twitter::Tweet.new)" do
-    it "creates the given author and assigns fields" do
+    it "creates the given tweet and assigns fields" do
       VCR.use_cassette('statuses/351779153646858241') do
         # Tweet
         status = Twitter.status('351779153646858241')
