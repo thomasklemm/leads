@@ -45,6 +45,15 @@
         / remember
         = link_to "Remember @#{ user.screen_name }", "/authors/#{ user.screen_name }", class: 'btn', remote: true, onclick: "$(this).attr('disabled', 'disabled')"
 
+  / pagination
+  p.pagination
+    - query_url = "/authors/search?query=#{ @query }&page="
+
+    - unless @page <= 1
+      = link_to 'Previous page', "#{ query_url }#{ @page - 1 }"
+      '  |
+    = link_to 'Next page', "#{ query_url }#{ @page + 1 }"
+
 / javascript:
 /   $('form').submit(function(){
 /   // On submit disable its submit button
