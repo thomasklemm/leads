@@ -14,6 +14,7 @@
 
   .search-users-wrapper
     - @authors.each do |user|
+      - remembered = Author.exists?(screen_name: user.screen_name)
       .user
 
         / avatar
@@ -43,7 +44,7 @@
             .value = user.status.source.html_safe
 
         / remember
-        = link_to "Remember @#{ user.screen_name }", "/authors/#{ user.screen_name }", class: 'btn', remote: true, onclick: "$(this).attr('disabled', 'disabled')"
+        = link_to "Remember @#{ user.screen_name }", "/authors/#{ user.screen_name }", class: "btn #{ 'btn-success' if remembered } ", remote: true, disabled: remembered ? 'disabled' : false, onclick: "$(this).attr('disabled', 'disabled').addClass('btn-success')"
 
   / pagination
   p.pagination
