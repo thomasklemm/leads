@@ -31,6 +31,6 @@ class Search
   private
 
   def query_url
-    "/authors/search?query=#{ query }"
+    "/authors/search?query=#{ URI.escape(query) }"
   end
 end
