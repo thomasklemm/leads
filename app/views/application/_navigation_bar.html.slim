@@ -12,7 +12,8 @@
 
       .right
         ul.nav
-          li = link_to 'Bookmarklet:', 'javascript:;'
+          - leads_count = Author.count
+          li = link_to "#{ leads_count } Leads", 'javascript:;'
           li = link_to 'Open @user in Dash', "javascript:var screen_name = document.location.href.split('/')[3];window.open('https://tweetbox-dash.herokuapp.com/authors/'+screen_name);"
 
       / ul.nav
