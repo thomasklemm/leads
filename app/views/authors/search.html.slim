@@ -53,9 +53,3 @@
       = link_to 'Previous page', "#{ query_url }#{ @page - 1 }"
       '  |
     = link_to 'Next page', "#{ query_url }#{ @page + 1 }"
-
-/ javascript:
-/   $('form').submit(function(){
-/   // On submit disable its submit button
-/     $('input[type=submit]', this).attr('disabled', 'disabled');
-/   });
