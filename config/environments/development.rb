@@ -26,4 +26,7 @@ Leads::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # LiveReload
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
 end

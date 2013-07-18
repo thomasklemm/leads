@@ -70,3 +70,42 @@ body
         .text
         .source
         .created_at
+
+// search users
+.search-users-wrapper
+  .user
+    padding-left: 72px
+
+    &:not(:last-of-type)
+      padding-bottom: 2rem
+
+    .avatar
+      float: left
+      margin-left: -64px
+      margin-top: 4px
+      border-radius: 2px
+
+    .name
+      font-weight: bold
+    .screen-name
+      margin: 0 6px
+
+    .description
+    .location
+    .url
+
+    // user statistics
+    .statistics
+      .stat
+        display: inline
+        &:not(:last-of-type)
+          margin-right: 0.5rem
+          border-right: 1px solid #ccc
+          padding-right: 0.5rem
+
+        .key, .value
+          display: inline
+        .value
+          margin-left: 3px
+          font-weight: bold
+

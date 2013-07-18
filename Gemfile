@@ -54,6 +54,10 @@ gem 'twitter-text'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # LiveReload
+  gem 'guard-livereload'
+  gem 'rack-livereload'
 end
 
 group :development, :test do

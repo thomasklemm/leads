@@ -1,6 +1,18 @@
 class AuthorsController < ApplicationController
   before_action :load_author, only: [:show, :update]
 
+  ##
+  # Collection actions
+
+  def search
+    @query = params[:query]
+    @authors = []
+    @authors = Twitter.user_search(@query, count: 20) if @query.present?
+  end
+
+  ##
+  # Member actions
+
   def show
   end
 

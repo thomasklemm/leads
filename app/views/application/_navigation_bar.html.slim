@@ -4,6 +4,12 @@
     .container
       = link_to 'Tweetbox Dash', root_path, class: 'brand'
 
+      / Twitter user search
+      / = form_tag({ controller: 'authors', action: 'search' }, method: :get, class: 'navbar-form pull-left') do
+      /   = text_field_tag :q, '', placeholder: 'Search', class: 'input-large search-query', autofocus: true, autocomplete: 'off'
+      /   | &nbsp;
+      /   = button_tag 'Search', class: 'btn', name: nil
+
       .right
         ul.nav
           li = link_to 'Bookmarklet:', 'javascript:;'
