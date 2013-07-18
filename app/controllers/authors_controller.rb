@@ -5,11 +5,7 @@ class AuthorsController < ApplicationController
   # Collection actions
 
   def search
-    @query = params[:query] || ''
-    @page = (params[:page] || 1).to_i
-
-    @authors = []
-    @authors = Twitter.user_search(@query, count: 20, page: @page) if @query.present?
+    @search = Search.new(params[:query], params[:page])
   end
 
   ##

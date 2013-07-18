@@ -1,0 +1,36 @@
+/ user
+.user
+  / avatar
+  = image_tag(user.profile_image_url, class: 'avatar')
+
+  / twitter url
+  = link_to icon_tag(:twitter), user.twitter_url, class: 'twitter-url'
+
+  / name
+  = link_to user.author_path do
+    span.name = user.name
+    span.screen-name = user.at_screen_name
+
+  / location
+  span.location = user.location
+
+  / description
+  .description = user.description
+
+  / stats
+  .statistics
+    .stat
+      .key Followers:
+      .value = user.followers_count
+    .stat
+      .key Tweets:
+      .value = user.statuses_count
+
+    - if user.status_source
+      .stat
+        .key Client:
+        .value = user.status_source
+
+  / remember
+  .space-quarter
+  = user.remember_button

@@ -4,55 +4,20 @@
 = form_tag({ controller: 'authors', action: 'search' }, method: :get, class: 'form-search') do
   fieldset
     legend Search for Twitter users
-    = text_field_tag :query, @query, placeholder: 'Search', class: 'input-large search-query', autofocus: true, autocomplete: 'off'
+    = text_field_tag :query, @search.query, placeholder: 'Search', class: 'input-large search-query', autofocus: true, autocomplete: 'off'
     | &nbsp;
     = submit_tag 'Search', class: 'btn', name: nil
 
 / results
-- if @query.present? && @authors.present?
-  h5 Results for '#{ @query }'
+- if @search.results
+  h5 Results for '#{ @search.query }'
 
-  .search-users-wrapper
-    - @authors.each do |user|
-      - remembered = Author.exists?(screen_name: user.screen_name)
-      .user
-
-        / avatar
-        = image_tag(user.profile_image_url_https, class: 'avatar')
-
-        / name
-        = link_to "/authors/#{ user.screen_name }" do
-          span.name = user.name
-          span.screen-name = '@' + user.screen_name
-
-        / location
-        span.location = user.location
-
-        / description
-        .description = user.description
-
-        / stats
-        .statistics
-          .stat
-            .key Followers:
-            .value = user.followers_count
-          .stat
-            .key Tweets:
-            .value = user.statuses_count
-
-          - if status = user.try(:status)
-            .stat
-              .key Client:
-              .value = status.try(:source).try(:html_safe)
-
-        / remember
-        = link_to "Remember @#{ user.screen_name }", "/authors/#{ user.screen_name }", class: "btn #{ 'btn-success' if remembered } ", remote: true, disabled: remembered ? 'disabled' : false, onclick: "$(this).attr('disabled', 'disabled').addClass('btn-success')"
+  .users-wrapper
+    = render partial: 'user', collection: @search.results
 
   / pagination
   p.pagination
-    - query_url = "/authors/search?query=#{ @query }&page="
-
-    - unless @page <= 1
-      = link_to 'Previous page', "#{ query_url }#{ @page - 1 }"
+    - if @search.previous_page
+      = link_to 'Previous page', @search.previous_page
       '  |
-    = link_to 'Next page', "#{ query_url }#{ @page + 1 }"
+    = link_to 'Next page', @search.next_page
