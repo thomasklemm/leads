@@ -1,5 +1,5 @@
 class Author < ActiveRecord::Base
-  include UrlExpander 
+  include UrlExpander
 
   # Kaminari
   # paginates_per 100
@@ -45,8 +45,8 @@ class Author < ActiveRecord::Base
     self.description = expand_urls(user.description, description_urls)
     self.location = user.location
     self.profile_image_url = user.profile_image_url_https
-    url_urls = user.attrs[:entities].try(:fetch, :url).try(:fetch, :urls, nil)    
-    self.url = expand_urls(user.url, url_urls)
+    url_urls = user.attrs[:entities].try(:fetch, :url, nil).try(:fetch, :urls, nil)
+    self.url = url_urls ? expand_urls(user.url, url_urls) : user.url
     self.followers_count = user.followers_count
     self.statuses_count = user.statuses_count
     self.friends_count = user.friends_count

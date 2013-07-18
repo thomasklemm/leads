@@ -12,8 +12,9 @@
 
   p
     span.location = @author.location
-    '  &middot;
-    = link_to @author.url, @author.url, class: 'url'
+    - if @author.url
+      '  &middot;
+      = link_to @author.url, @author.url, class: 'url'
 
   .statistics
     p
