@@ -3,6 +3,7 @@ Leads::Application.routes.draw do
   # Authors
   resources :authors, only: [:show, :update] do
     get :search, on: :collection
+    get :score, on: :collection
   end
 
   root 'authors#search'

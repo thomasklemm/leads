@@ -1,11 +1,15 @@
 class Author < ActiveRecord::Base
+  extend Enumerize
   include UrlExpander
 
-  # Kaminari
-  # paginates_per 100
-  # max_paginates_per 250
-
   has_many :tweets, dependent: :restrict_with_exception
+
+  # Score
+  enumerize :score,
+    in: [:high, :medium, :secondary, :unscored],
+    default: :unscored,
+    predicates: { prefix: true },
+    scope: :having_score
 
   # Returns an author record
   def self.from_twitter(user, opts={})
