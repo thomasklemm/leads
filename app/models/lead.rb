@@ -9,7 +9,7 @@ class Lead < ActiveRecord::Base
             presence: true
 
   scope :by_statuses_count, -> { order(statuses_count: :desc) }
-  scope :by_joined_twitter_at, -> { order(joined_twitter_at: :desc) }
+  scope :by_joined_twitter_at, -> { order(joined_twitter_at: :asc) }
 
   # Score
   enumerize :score,
@@ -19,7 +19,7 @@ class Lead < ActiveRecord::Base
     scope: :having_score
 
   # Pagination
-  paginates_per 50
+  paginates_per 30
 
   # Returns a lead record
   def self.from_twitter(user, opts={})

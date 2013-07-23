@@ -1,6 +1,8 @@
 / twitter user
 - twitter_user &&= TwitterUserDecorator.new(twitter_user)
 
+/ if the twitter user is already present as a lead in the database
+/ then render the lead partial
 - if lead = twitter_user.lead
   = render lead
 

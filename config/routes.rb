@@ -1,7 +1,7 @@
 Leads::Application.routes.draw do
 
   # Leads
-  resources :leads, only: [:show, :update] do
+  resources :leads, only: [:show, :update, :destroy] do
     collection do
       get :search
       post :remember

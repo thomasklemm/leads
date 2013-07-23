@@ -16,6 +16,9 @@
   / location
   span.location = lead.location
 
+  / remove lead
+  = link_to icon_tag(:remove, 'Remove lead'), lead, method: :delete, confirm: "Remove?", class: 'destroy-link muted'
+
   / description
   .description = lead.description
 
@@ -36,9 +39,8 @@
   .space-quarter
 
   / score
-  div
+  .score
     ' Score:
-    / span class='label label-info' style='margin-right: 0.5rem' Score:
 
     span class="btn-group" data-toggle="buttons-radio"
       - %w(high medium secondary).each do |score|

@@ -1,5 +1,5 @@
 class LeadsController < ApplicationController
-  before_action :load_lead, only: [:show, :update, :refresh]
+  before_action :load_lead, only: [:show, :update, :refresh, :destroy]
 
   ##
   # Collection actions
@@ -16,6 +16,8 @@ class LeadsController < ApplicationController
 
   # Score leads
   def score
+    search
+
     @leads = Lead.having_score(score_params).
       by_joined_twitter_at.page(params[:page])
 
@@ -44,7 +46,13 @@ class LeadsController < ApplicationController
     @lead.fetch_user_timeline
 
     redirect_to @lead,
-      notice: "#{ @lead.at_screen_name } has been updated from Twitter."
+      notice: "Lead @#{ @lead.screen_name } has been updated from Twitter."
+  end
+
+  def destroy
+    @lead.destroy
+    redirect_to :back,
+      notice: "Lead @#{ @lead.screen_name } has been removed."
   end
 
   private
