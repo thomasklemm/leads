@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130722202459) do
+ActiveRecord::Schema.define(version: 20130722202500) do
 
   create_table "leads", force: true do |t|
     t.integer  "twitter_id",        limit: 8
