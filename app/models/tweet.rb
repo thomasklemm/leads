@@ -11,7 +11,7 @@ class Tweet < ActiveRecord::Base
 
     tweet = self.find_or_create_by(twitter_id: status.id)
     tweet.assign_fields(status)
-    tweet.lead = lead || Author.from_twitter(status.user, skip_status: true)
+    tweet.lead = lead || Lead.from_twitter(status.user, skip_status: true)
     tweet.save! and tweet
   rescue ActiveRecord::RecordNotUnique
     retry

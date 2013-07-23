@@ -4,7 +4,8 @@
 body
   padding-top: 56px
 
-p
+p, form
+  padding: 0
   margin: 0
 
 // Floats
@@ -29,48 +30,53 @@ p
 .space-three
   height: 3rem
 
+// logo header
+.logo-header
+  img
+    width: 42px
+    height: 42px
+    margin-right: 6px
+
 // show lead
-.lead-wrapper
-  .lead
-    .avatar
-    .name
-      font-size: 1rem
-      font-weight: bold
-      margin: 0 0.5rem 0 1rem
-    .screen-name
+.show-lead
+  .avatar
+    height: 48px
+    width: 48px
+    border-radius: 2px
+  .name
+    font-size: 1rem
+    font-weight: bold
+    margin: 0 0.5rem 0 1rem
+  .screen-name
+    margin-right: 0.5rem
+
+  .description
+  .location
+  .url
+
+  .stat
+    display: inline
+    &:not(:last-of-type)
       margin-right: 0.5rem
+      border-right: 1px solid #ccc
+      padding-right: 0.5rem
 
-    .description
-    .location
-    .url
-
-    // lead statistics
-    .statistics
-      .stat
-        display: inline
-        &:not(:last-of-type)
-          margin-right: 0.5rem
-          border-right: 1px solid #ccc
-          padding-right: 0.5rem
-
-        .key, .value
-          display: inline
-        .value
-          margin-left: 3px
-          font-weight: bold
+    .key, .value
+      display: inline
+    .value
+      margin-left: 3px
+      font-weight: bold
 
   // lead's tweets
   .tweets
-    margin-top: 3rem
-    font-size: 13px
-
     .sources
-      border-left: 2px solid #eee
-      padding-left: 1rem
+
     #sources-chart
 
     .tweets-table
       .tweet
+        font-size: 13px
+
         .text
         .source
         .created_at
@@ -86,6 +92,8 @@ p
     float: left
     margin-left: -64px
     margin-top: 4px
+    height: 48px
+    width: 48px
     border-radius: 2px
 
   .twitter-url
@@ -107,17 +115,16 @@ p
     p
       margin: 0
 
-  .statistics
-    .stat
-      display: inline
-      &:not(:last-of-type)
-        margin-right: 0.5rem
-        border-right: 1px solid #ccc
-        padding-right: 0.5rem
+  .stat
+    display: inline
+    &:not(:last-of-type)
+      margin-right: 0.5rem
+      border-right: 1px solid #ccc
+      padding-right: 0.5rem
 
-      .key, .value
-        display: inline
-      .value
-        margin-left: 3px
-        font-weight: bold
+    .key, .value
+      display: inline
+    .value
+      margin-left: 3px
+      font-weight: bold
 

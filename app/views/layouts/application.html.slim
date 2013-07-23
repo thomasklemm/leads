@@ -22,7 +22,7 @@ body
             li.nav-header Leads
             = active_list_item_link_to icon_tag(:search, 'Find Leads'), search_leads_path
 
-            li = link_to icon_tag(:magic, 'Leads To Score'), score_leads_path(:unscored), exact: true
+            = active_list_item_link_to icon_tag(:magic, 'Leads To Score'), score_leads_path(:unscored), exact: true
 
             ul class='nav nav-list'
               = active_list_item_link_to icon_tag(:star, 'High Score'), score_leads_path(:high), exact: true

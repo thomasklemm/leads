@@ -14,7 +14,7 @@ class TweetDecorator < Draper::Decorator
   end
 
   def twitter_url
-    "https://twitter.com/#{ author.screen_name }/status/#{ twitter_id }"
+    "https://twitter.com/#{ lead.screen_name }/status/#{ twitter_id }"
   end
 
   # Define presentation-specific methods here. Helpers are accessed through

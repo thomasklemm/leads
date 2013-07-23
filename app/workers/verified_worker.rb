@@ -10,7 +10,7 @@ class VerifiedWorker
 
     (0..49).each do |i|
       users = Twitter.users(user_ids[i], method: :get)
-      users.each { |user| Author.from_twitter(user) }
+      users.each { |user| Lead.from_twitter(user) }
     end
 
     next_cursor = friend_ids.try(:next)

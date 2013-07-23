@@ -1,7 +1,7 @@
-// Lead
-var $lead = $('#<%= dom_id(@lead, :edit) %>');
-var $new_lead = $('<%= j render @lead %>');
+// Update lead
+var $currentLead = $('#<%= dom_id(@lead, :edit) %>');
+var $lead = $('<%= j render @lead %>');
 
-// Replace html with lead
-$lead.replaceWith($new_lead);
-$new_lead.submitOnCheck();
+// Replace current lead with freshly rendered lead
+$currentLead.replaceWith($lead);
+$lead.submitOnCheck();

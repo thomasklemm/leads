@@ -43,7 +43,7 @@ class LeadDecorator < Draper::Decorator
   end
 
   def ordered_tweets
-    tweets.order(created_at: :desc).limit(100)
+    tweets.order(created_at: :desc).limit(50)
   end
 
   def lead_path

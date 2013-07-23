@@ -29,7 +29,7 @@ module ApplicationHelper
     end
   end
 
-    # Highlights the currently active navigation item with a special class
+  # Highlights the currently active navigation item with a special class
   def active_list_item_link_to(*args)
     link = link_to(*args)
     path_args = args.second or raise StandardError, 'Expected URL to be second argument.'
@@ -42,6 +42,15 @@ module ApplicationHelper
     end
 
     content_tag(:li, link, class: "#{ 'active' if match }")
+  end
+
+  def logo_header(text)
+    content_tag :h3, class: 'logo-header' do
+      concat image_tag 'Tweetbox-Logo.png'
+      concat text
+    end
+
+    # "<h3>#{ image_tag 'Tweetbox-Logo.png', width: 42, style: 'margin-right: 8px' }#{ text }</h3>".html_safe
   end
 
   private

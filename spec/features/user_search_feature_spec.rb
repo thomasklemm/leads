@@ -7,7 +7,7 @@ describe "Search for Twitter users" do
 
     # User search
     VCR.use_cassette('user_searches/customer_care') do
-      visit search_authors_path
+      visit search_leads_path
 
       # Search
       fill_in 'query', with: 'Customer Care'
