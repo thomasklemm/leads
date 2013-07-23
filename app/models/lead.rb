@@ -18,6 +18,9 @@ class Lead < ActiveRecord::Base
     predicates: { prefix: true },
     scope: :having_score
 
+  # Pagination
+  paginates_per 50
+
   # Returns a lead record
   def self.from_twitter(user, opts={})
     return unless user

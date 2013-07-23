@@ -5,6 +5,7 @@ Leads::Application.routes.draw do
     collection do
       get :search
       post :remember
+      get 'score', to: redirect('/leads/score/unscored'), as: :unscored
       get 'score/:score', to: :score, as: :score
     end
 

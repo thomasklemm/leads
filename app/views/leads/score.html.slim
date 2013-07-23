@@ -1,4 +1,15 @@
 / score leads
 
+h3 = @score_name
+
+= page_entries_info @leads, entry_name: @score_name.downcase
+
+hr
+
 .leads-wrapper
   = render partial: 'lead', collection: @leads
+
+hr
+
+= paginate @leads, window: 2
+= page_entries_info @leads

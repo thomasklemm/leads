@@ -25,10 +25,10 @@ body
             li = link_to icon_tag(:star, 'Score Leads'), score_leads_path(:unscored)
 
             ul class='nav nav-list'
-              = active_list_item_link_to icon_tag(:ok, 'Unscored'), score_leads_path(:unscored), exact: true
               = active_list_item_link_to icon_tag(:star, 'High Score'), score_leads_path(:high), exact: true
               = active_list_item_link_to icon_tag('star-half-full', 'Medium Score'), score_leads_path(:medium), exact: true
               = active_list_item_link_to icon_tag('star-empty', 'Secondary Accounts'), score_leads_path(:secondary), exact: true
+              = active_list_item_link_to icon_tag(:ok, 'Unscored'), score_leads_path(:unscored), exact: true
 
       .span9
         = render 'flash_messages'

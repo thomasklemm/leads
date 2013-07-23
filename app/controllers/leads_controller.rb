@@ -16,7 +16,15 @@ class LeadsController < ApplicationController
 
   # Score leads
   def score
-    @leads = Lead.having_score(score_params).by_joined_twitter_at.limit(100)
+    @leads = Lead.having_score(score_params).
+      by_joined_twitter_at.page(params[:page])
+
+    @score_name = case score_params.to_s
+                  when 'high'      then 'High Scoring Leads'
+                  when 'medium'    then 'Medium Scoring Leads'
+                  when 'secondary' then 'Secondary Accounts'
+                  when 'unscored'  then 'Unscored Leads'
+                  end
   end
 
   ##
@@ -51,6 +59,6 @@ class LeadsController < ApplicationController
   end
 
   def score_params
-    params[:score] || :unscored
+    params[:score] ||= :unscored
   end
 end
