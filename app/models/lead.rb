@@ -8,6 +8,9 @@ class Lead < ActiveRecord::Base
             :screen_name,
             presence: true
 
+  scope :by_statuses_count, -> { order(statuses_count: :desc) }
+  scope :by_joined_twitter_at, -> { order(joined_twitter_at: :desc) }
+
   # Score
   enumerize :score,
     in: [:high, :medium, :secondary, :unscored],

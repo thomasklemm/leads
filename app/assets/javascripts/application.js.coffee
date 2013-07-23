@@ -26,7 +26,7 @@
 #     event.preventDefault()
 
 jQuery.fn.submitOnCheck = ->
-  @find('input[type=submit]').remove()
+  # @find('input[type=submit]').remove()
   @find('input[type=radio]').hide().click ->
     $(this).parents('form').submit()
   # Return this for chaining

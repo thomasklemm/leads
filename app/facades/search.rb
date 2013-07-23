@@ -24,7 +24,6 @@ class Search
     @results ||= begin
       return unless query.present?
       users = Twitter.user_search(query, count: 20, page: page)
-      users.map { |user| LeadDecorator.new(user) }
     end
   end
 

@@ -72,43 +72,43 @@ body
         .source
         .created_at
 
-.leads-wrapper
-  .edit_lead
-    padding-left: 72px
+// lead in collection
+.edit_lead, .twitter-user
+  padding-left: 72px
 
-    &:not(:last-of-type)
-      padding-bottom: 2rem
+  &:not(:last-of-type)
+    padding-bottom: 2rem
 
-    .avatar
-      float: left
-      margin-left: -64px
-      margin-top: 4px
-      border-radius: 2px
+  .avatar
+    float: left
+    margin-left: -64px
+    margin-top: 4px
+    border-radius: 2px
 
-    .twitter-url
-      margin-right: 2px
-      font-size: 15px
-    .name
-      font-weight: bold
-    .screen-name
-      margin: 0 6px
-    .location
+  .twitter-url
+    margin-right: 2px
+    font-size: 15px
+  .name
+    font-weight: bold
+  .screen-name
+    margin: 0 6px
+  .location
 
-    .description
-      p
-        margin: 0
+  .description
+    p
+      margin: 0
 
-    .statistics
-      .stat
+  .statistics
+    .stat
+      display: inline
+      &:not(:last-of-type)
+        margin-right: 0.5rem
+        border-right: 1px solid #ccc
+        padding-right: 0.5rem
+
+      .key, .value
         display: inline
-        &:not(:last-of-type)
-          margin-right: 0.5rem
-          border-right: 1px solid #ccc
-          padding-right: 0.5rem
-
-        .key, .value
-          display: inline
-        .value
-          margin-left: 3px
-          font-weight: bold
+      .value
+        margin-left: 3px
+        font-weight: bold
 

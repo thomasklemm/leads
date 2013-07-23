@@ -13,10 +13,23 @@ head
 body
   .container
     = render 'navigation_bar'
-    = render 'flash_messages'
-    = yield
 
-    / LiveReload in development mode
-    - if Rails.env.development?
-      javascript:
-        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    .row
+      .span3
+        .well style="padding: 8px 0;"
+
+          ul class='nav nav-list'
+            li.nav-header Leads
+            = active_list_item_link_to icon_tag(:search, 'Find Leads'), search_leads_path
+
+            li = link_to icon_tag(:star, 'Score Leads'), score_leads_path(:unscored)
+
+            ul class='nav nav-list'
+              = active_list_item_link_to icon_tag(:ok, 'Unscored'), score_leads_path(:unscored), exact: true
+              = active_list_item_link_to icon_tag(:star, 'High Score'), score_leads_path(:high), exact: true
+              = active_list_item_link_to icon_tag('star-half-full', 'Medium Score'), score_leads_path(:medium), exact: true
+              = active_list_item_link_to icon_tag('star-empty', 'Secondary Accounts'), score_leads_path(:secondary), exact: true
+
+      .span9
+        = render 'flash_messages'
+        = yield

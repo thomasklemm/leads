@@ -28,4 +28,25 @@ module ApplicationHelper
     else                  icon_tag('ok')
     end
   end
+
+    # Highlights the currently active navigation item with a special class
+  def active_list_item_link_to(*args)
+    link = link_to(*args)
+    path_args = args.second or raise StandardError, 'Expected URL to be second argument.'
+    exact = args.third.try(:fetch, :exact, false)
+
+    match = if exact
+      current_path == url_for(path_args)
+    else
+      current_path.start_with?(url_for(path_args))
+    end
+
+    content_tag(:li, link, class: "#{ 'active' if match }")
+  end
+
+  private
+
+  def current_path
+    request.fullpath
+  end
 end

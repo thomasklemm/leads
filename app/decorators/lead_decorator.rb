@@ -25,6 +25,10 @@ class LeadDecorator < Draper::Decorator
     end
   end
 
+  def source
+    tweets.first.try(:source).try(:html_safe)
+  end
+
   def sources
     @sources ||= begin
       sources = tweets.group("source").count.sort_by(&:last).reverse
@@ -39,20 +43,23 @@ class LeadDecorator < Draper::Decorator
   end
 
   def ordered_tweets
-    tweets.order(created_at: :desc).limit(100).decorate
+    tweets.order(created_at: :desc).limit(100)
   end
 
   def lead_path
     h.lead_path(self)
   end
 
-  # Leads are always remembered
-  def remembered?
-    true
+  def statuses_count
+    h.number_with_delimiter(model.statuses_count)
   end
 
-  def source
-    tweets.first.try(:source).html_safe
+  def followers_count
+    h.number_with_delimiter(model.followers_count)
+  end
+
+  def friends_count
+    h.number_with_delimiter(model.friends_count)
   end
 
   # Define presentation-specific methods here. Helpers are accessed through

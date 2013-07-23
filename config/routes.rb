@@ -4,11 +4,8 @@ Leads::Application.routes.draw do
   resources :leads, only: [:show, :update] do
     collection do
       get :search
-
-      # Score
-      # with default :unscored
-      get :score, score: :unscored
-      get "score/:score", to: :score
+      post :remember
+      get 'score/:score', to: :score, as: :score
     end
 
     member do

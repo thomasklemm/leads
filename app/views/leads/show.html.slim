@@ -66,6 +66,7 @@
     table class='tweets-table table'
       tbody
       - @author.ordered_tweets.each do |tweet|
+        - tweet &&= tweet.decorate
         tr.tweet
           td = link_to icon_tag(:twitter), tweet.twitter_url, class: 'twitter-url'
           td.text = tweet.text

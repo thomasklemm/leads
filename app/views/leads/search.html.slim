@@ -3,17 +3,18 @@
 / search form
 = form_tag({ controller: 'leads', action: 'search' }, method: :get, class: 'form-search') do
   fieldset
-    legend Search for Twitter users
-    = text_field_tag :query, @search.query, placeholder: 'Search', class: 'input-large search-query', autofocus: true, autocomplete: 'off'
-    | &nbsp;
-    = submit_tag 'Search', class: 'btn', name: nil
+    h3 Find Leads
+    .well
+      = text_field_tag :query, @search.query, placeholder: 'Search', class: 'input-large search-query', autofocus: true, autocomplete: 'off'
+      | &nbsp;
+      = submit_tag 'Search', class: 'btn', name: nil
 
 / results
 - if @search.results
   h5 Results for '#{ @search.query }'
 
   .users-wrapper
-    = render partial: 'lead', collection: @search.results
+    = render partial: 'twitter_user', collection: @search.results
 
   / pagination
   p.pagination

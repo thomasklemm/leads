@@ -12,16 +12,20 @@ class TwitterUserDecorator
            :url,
            to: :user
 
+  def lead
+    @lead ||= Lead.find_by(twitter_id: twitter_id)
+  end
+
   def twitter_id
     user.id
   end
 
-  def description
-    h.link_twitter_text(user.description)
-  end
-
   def profile_image_url
     user.try(:profile_image_url_https) || user.profile_image_url
+  end
+
+  def description
+    h.link_twitter_text(user.description)
   end
 
   def lead_path
@@ -55,10 +59,6 @@ class TwitterUserDecorator
   # Twitter::User records are always unscored
   def score
     :unscored
-  end
-
-  def remembered?
-    @remembered ||= Lead.exists?(twitter_id: twitter_id)
   end
 
   private
