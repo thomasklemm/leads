@@ -19,4 +19,13 @@ module ApplicationHelper
   def icon_tag(type, text=nil)
     "<i class='icon-#{ type.to_s }'></i> #{ text }".html_safe
   end
+
+  def score_icon_tag(score)
+    case score.to_s
+    when 'high'      then icon_tag('star')
+    when 'medium'    then icon_tag('star-half-full')
+    when 'secondary' then icon_tag('star-empty')
+    else                  icon_tag('ok')
+    end
+  end
 end

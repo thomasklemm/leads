@@ -1,0 +1,7 @@
+// Lead
+var $lead = $('#<%= dom_id(@lead, :edit) %>');
+var $new_lead = $('<%= j render @lead %>');
+
+// Replace html with lead
+$lead.replaceWith($new_lead);
+$new_lead.submitOnCheck();

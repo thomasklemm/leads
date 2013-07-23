@@ -5,7 +5,7 @@
       = link_to 'Tweetbox Dash', root_path, class: 'brand'
 
       ul.nav
-        li = link_to 'Leads', search_authors_path
+        li = link_to 'Leads', search_leads_path
 
       / Twitter user search
       / = form_tag({ controller: 'authors', action: 'search' }, method: :get, class: 'navbar-form pull-left') do
@@ -15,7 +15,7 @@
 
       .right
         ul.nav
-          - leads_count = Author.count
+          - leads_count = Lead.count
           li = link_to "#{ leads_count } Leads", 'javascript:;'
           li = link_to 'Open @user in Dash', "javascript:var screen_name = document.location.href.split('/')[3];window.open('https://tweetbox-dash.herokuapp.com/authors/'+screen_name);"
 

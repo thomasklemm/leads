@@ -1,0 +1,53 @@
+/ lead
+= form_for lead, remote: true do |f|
+  / avatar
+  = image_tag(lead.profile_image_url, class: 'avatar')
+
+  / twitter url
+  = link_to icon_tag(:twitter), lead.twitter_url, class: 'twitter-url'
+
+  / name
+  = link_to lead.lead_path do
+    span.name = lead.name
+    span.screen-name = lead.at_screen_name
+
+  / location
+  span.location = lead.location
+
+  / description
+  .description = lead.description
+
+  / stats
+  .statistics
+    .stat
+      .key Followers:
+      .value = lead.followers_count
+    .stat
+      .key Tweets:
+      .value = lead.statuses_count
+
+    - if lead.source
+      .stat
+        .key Client:
+        .value = lead.source
+
+  .space-quarter
+
+  div
+    span class="btn-group" data-toggle="buttons-radio"
+      - %w(high medium secondary).each do |score|
+        - score_id = "lead_#{ lead.twitter_id }_score_#{ score }"
+        = f.label "#{ lead.twitter_id }_score_#{ score }", class: "btn #{'active btn-success' if lead.score.to_s == score.to_s}"
+          = f.radio_button :score, score, id: score_id
+          = score_icon_tag(score)
+
+    /   = f.collection_radio_buttons :score, %w(high medium secondary), :to_s, :to_s, {}, {  } do |b|
+    /     = b.label id: "lead_score_#{ b.text }_#{ lead.twitter_id }", for: "lead_score_#{ b.text }_#{ lead.twitter_id }", class: "btn #{'active btn-success' if lead.score.to_s == b.text.to_s}" do
+    /       = score_icon_tag(b.radio_button, b.text)
+
+    / span class="btn-group" data-toggle="buttons-radio"
+    /   = f.collection_radio_buttons :score, %w(high medium secondary), :to_s, :to_s, {}, {  } do |b|
+    /     = b.label id: "lead_score_#{ b.text }_#{ lead.twitter_id }", for: "lead_score_#{ b.text }_#{ lead.twitter_id }", class: "btn #{'active btn-success' if lead.score.to_s == b.text.to_s}" do
+    /       = score_icon_tag(b.radio_button, b.text)
+
+    span class='label label-success' style='margin-left: 0.5rem' = icon_tag(:ok, 'Remembered')

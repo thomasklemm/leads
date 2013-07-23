@@ -1,8 +1,12 @@
-class Author < ActiveRecord::Base
+class Lead < ActiveRecord::Base
   extend Enumerize
   include UrlExpander
 
-  has_many :tweets, dependent: :restrict_with_exception
+  has_many :tweets, dependent: :destroy
+
+  validates :twitter_id,
+            :screen_name,
+            presence: true
 
   # Score
   enumerize :score,
@@ -11,27 +15,27 @@ class Author < ActiveRecord::Base
     predicates: { prefix: true },
     scope: :having_score
 
-  # Returns an author record
+  # Returns a lead record
   def self.from_twitter(user, opts={})
     return unless user
 
-    author = self.find_or_create_by(twitter_id: user.id)
-    author.assign_fields(user)
-    author.save!
+    lead = self.find_or_create_by(twitter_id: user.id)
+    lead.send(:assign_fields, user)
+    lead.save!
 
     # Free embeded status
-    Tweet.from_twitter(user.status, author) unless opts[:skip_status]
+    Tweet.from_twitter(user.status, lead) unless opts[:skip_status]
 
-    author
+    lead
   rescue ActiveRecord::RecordNotUnique
     retry
   end
 
-  # Returns an author record
+  # Returns a lead record
   # or nil if the user cannot be found on Twitter
   def self.find_or_fetch_by_screen_name(screen_name)
-    author = find_by(screen_name: screen_name)
-    author ||= fetch_by_screen_name(screen_name)
+    lead = find_by(screen_name: screen_name)
+    lead ||= fetch_by_screen_name(screen_name)
   end
 
   def self.fetch_by_screen_name(screen_name)
@@ -41,38 +45,10 @@ class Author < ActiveRecord::Base
     nil
   end
 
-  # Assigns fields from a Twitter::User object
-  def assign_fields(user)
-    self.screen_name = user.screen_name
-    self.name = user.name
-    description_urls = user.attrs[:entities].try(:fetch, :description).try(:fetch, :urls, nil)
-    self.description = expand_urls(user.description, description_urls)
-    self.location = user.location
-    self.profile_image_url = user.profile_image_url_https
-    url_urls = user.attrs[:entities].try(:fetch, :url, nil).try(:fetch, :urls, nil)
-    self.url = url_urls ? expand_urls(user.url, url_urls) : user.url
-    self.followers_count = user.followers_count
-    self.statuses_count = user.statuses_count
-    self.friends_count = user.friends_count
-    self.joined_twitter_at = user.created_at
-    self.lang = user.lang
-    self.time_zone = user.time_zone
-    self.verified = user.verified
-    self.following = user.following
-    self
-  end
-
-  def at_screen_name
-    "@#{ screen_name }"
-  end
-
-  def twitter_url
-    "https://twitter.com/#{ screen_name }"
-  end
-
+  # Fetches and updates the current lead from Twitter
   def fetch_user
     user = Twitter.user(screen_name)
-    Author.from_twitter(user)
+    Lead.from_twitter(user)
   end
 
   # Removes all current tweets
@@ -86,5 +62,28 @@ class Author < ActiveRecord::Base
 
   def to_param
     screen_name
+  end
+
+  private
+
+  # Assigns fields from a Twitter::User object
+  def assign_fields(user)
+    self.screen_name = user.screen_name
+    self.name = user.name
+    description_urls = user.attrs[:entities].try(:fetch, :description).try(:fetch, :urls, nil)
+    self.description = description_urls ? expand_urls(user.description, description_urls) : user.description
+    self.location = user.location
+    self.profile_image_url = user.profile_image_url_https
+    url_urls = user.attrs[:entities].try(:fetch, :url, nil).try(:fetch, :urls, nil)
+    self.url = url_urls ? expand_urls(user.url, url_urls) : user.url
+    self.followers_count = user.followers_count
+    self.statuses_count = user.statuses_count
+    self.friends_count = user.friends_count
+    self.joined_twitter_at = user.created_at
+    self.lang = user.lang
+    self.time_zone = user.time_zone
+    self.verified = user.verified
+    self.following = user.following
+    self
   end
 end

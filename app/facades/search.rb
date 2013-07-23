@@ -24,13 +24,13 @@ class Search
     @results ||= begin
       return unless query.present?
       users = Twitter.user_search(query, count: 20, page: page)
-      users.map { |user| UserDecorator.new(user) }
+      users.map { |user| LeadDecorator.new(user) }
     end
   end
 
   private
 
   def query_url
-    "/authors/search?query=#{ URI.escape(query) }"
+    "/leads/search?query=#{ URI.escape(query) }"
   end
 end

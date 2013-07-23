@@ -1,7 +1,7 @@
 / authors/search
 
 / search form
-= form_tag({ controller: 'authors', action: 'search' }, method: :get, class: 'form-search') do
+= form_tag({ controller: 'leads', action: 'search' }, method: :get, class: 'form-search') do
   fieldset
     legend Search for Twitter users
     = text_field_tag :query, @search.query, placeholder: 'Search', class: 'input-large search-query', autofocus: true, autocomplete: 'off'
@@ -13,7 +13,7 @@
   h5 Results for '#{ @search.query }'
 
   .users-wrapper
-    = render partial: 'user', collection: @search.results
+    = render partial: 'lead', collection: @search.results
 
   / pagination
   p.pagination

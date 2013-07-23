@@ -1,12 +1,22 @@
 Leads::Application.routes.draw do
 
-  # Authors
-  resources :authors, only: [:show, :update] do
-    get :search, on: :collection
-    get :score, on: :collection
+  # Leads
+  resources :leads, only: [:show, :update] do
+    collection do
+      get :search
+
+      # Score
+      # with default :unscored
+      get :score, score: :unscored
+      get "score/:score", to: :score
+    end
+
+    member do
+      post :refresh
+    end
   end
 
-  root 'authors#search'
+  root 'leads#search'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

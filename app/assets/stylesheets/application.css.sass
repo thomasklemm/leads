@@ -26,36 +26,37 @@ body
 .space-three
   height: 3rem
 
-// show author
-.author
-  .avatar
-  .name
-    font-size: 1rem
-    font-weight: bold
-    margin: 0 0.5rem 0 1rem
-  .screen-name
-    margin-right: 0.5rem
+// show lead
+.lead-wrapper
+  .lead
+    .avatar
+    .name
+      font-size: 1rem
+      font-weight: bold
+      margin: 0 0.5rem 0 1rem
+    .screen-name
+      margin-right: 0.5rem
 
-  .description
-  .location
-  .url
+    .description
+    .location
+    .url
 
-  // author statistics
-  .statistics
-    .stat
-      display: inline
-      &:not(:last-of-type)
-        margin-right: 0.5rem
-        border-right: 1px solid #ccc
-        padding-right: 0.5rem
-
-      .key, .value
+    // lead statistics
+    .statistics
+      .stat
         display: inline
-      .value
-        margin-left: 3px
-        font-weight: bold
+        &:not(:last-of-type)
+          margin-right: 0.5rem
+          border-right: 1px solid #ccc
+          padding-right: 0.5rem
 
-  // author's tweets
+        .key, .value
+          display: inline
+        .value
+          margin-left: 3px
+          font-weight: bold
+
+  // lead's tweets
   .tweets
     margin-top: 3rem
     font-size: 13px
@@ -71,9 +72,8 @@ body
         .source
         .created_at
 
-// search Twitter users
-.users-wrapper
-  .user
+.leads-wrapper
+  .edit_lead
     padding-left: 72px
 
     &:not(:last-of-type)
@@ -98,7 +98,6 @@ body
       p
         margin: 0
 
-    // user statistics
     .statistics
       .stat
         display: inline

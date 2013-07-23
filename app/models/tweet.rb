@@ -1,15 +1,17 @@
 class Tweet < ActiveRecord::Base
   include UrlExpander
 
-  belongs_to :author
+  belongs_to :lead
+
+  validates :twitter_id, presence: true
 
   # Returns a tweet record
-  def self.from_twitter(status, author=nil)
+  def self.from_twitter(status, lead=nil)
     return unless status
 
     tweet = self.find_or_create_by(twitter_id: status.id)
     tweet.assign_fields(status)
-    tweet.author = author || Author.from_twitter(status.user, skip_status: true)
+    tweet.lead = lead || Author.from_twitter(status.user, skip_status: true)
     tweet.save! and tweet
   rescue ActiveRecord::RecordNotUnique
     retry

@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130722080910) do
+ActiveRecord::Schema.define(version: 20130722202459) do
 
-  create_table "authors", force: true do |t|
+  create_table "leads", force: true do |t|
     t.integer  "twitter_id",        limit: 8
     t.text     "screen_name"
     t.text     "name"
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20130722080910) do
     t.text     "score"
   end
 
-  add_index "authors", ["followers_count"], name: "index_authors_on_followers_count", using: :btree
-  add_index "authors", ["score"], name: "index_authors_on_score", using: :btree
-  add_index "authors", ["screen_name"], name: "index_authors_on_screen_name", using: :btree
-  add_index "authors", ["twitter_id"], name: "index_authors_on_twitter_id", unique: true, using: :btree
+  add_index "leads", ["followers_count"], name: "index_leads_on_followers_count", using: :btree
+  add_index "leads", ["score"], name: "index_leads_on_score", using: :btree
+  add_index "leads", ["screen_name"], name: "index_leads_on_screen_name", using: :btree
+  add_index "leads", ["twitter_id"], name: "index_leads_on_twitter_id", unique: true, using: :btree
 
   create_table "tweets", force: true do |t|
     t.integer  "twitter_id",            limit: 8
@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20130722080910) do
     t.text     "lang"
     t.integer  "favorite_count",                  default: 0
     t.integer  "retweet_count",                   default: 0
-    t.integer  "author_id"
+    t.integer  "lead_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tweets", ["author_id"], name: "index_tweets_on_author_id", using: :btree
+  add_index "tweets", ["lead_id"], name: "index_tweets_on_lead_id", using: :btree
   add_index "tweets", ["twitter_id"], name: "index_tweets_on_twitter_id", unique: true, using: :btree
 
 end
