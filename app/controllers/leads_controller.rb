@@ -51,7 +51,7 @@ class LeadsController < ApplicationController
 
   def destroy
     @lead.destroy
-    redirect_to search_leads_path,
+    redirect_to score_leads_path,
       notice: "Lead @#{ @lead.screen_name } has been removed."
   end
 
