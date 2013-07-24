@@ -51,7 +51,7 @@ class LeadsController < ApplicationController
 
   def destroy
     @lead.destroy
-    redirect_to redirect_params,
+    redirect_to search_leads_path,
       notice: "Lead @#{ @lead.screen_name } has been removed."
   end
 
@@ -69,9 +69,5 @@ class LeadsController < ApplicationController
   # Assigns score unless set, too.
   def score_params
     params[:score] ||= :unscored
-  end
-
-  def redirect_params
-    params[:redirect_to] || :back
   end
 end

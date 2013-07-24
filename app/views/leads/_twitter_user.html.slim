@@ -23,26 +23,16 @@
     span.location = twitter_user.location
 
     / description
-    .description = twitter_user.description
-
     / url
-    .url = twitter_user.url
+    div.description-wrapper
+      span.description == twitter_user.description
+      span.url == twitter_user.url
 
     / stats
     .statistics
-      .stat
-        .key Followers:
-        .value = twitter_user.followers_count
-      .stat
-        .key Tweets:
-        .value = twitter_user.statuses_count
-
-      - if twitter_user.source
-        .stat
-          .key Client:
-          .value = twitter_user.source
-
-    .space-quarter
+      = stat('Followers:', twitter_user.followers_count)
+      = stat('Tweets:', twitter_user.statuses_count)
+      = stat('Client:', twitter_user.source) if twitter_user.source
 
     / remember
     = link_to "Remember #{ twitter_user.at_screen_name }", remember_leads_path(screen_name: twitter_user.screen_name), method: :post, remote: true, class: 'btn'

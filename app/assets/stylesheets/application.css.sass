@@ -2,7 +2,7 @@
 @import "bootstrap"
 
 body
-  padding-top: 56px
+  padding-top: 54px
 
 p, form
   padding: 0
@@ -37,56 +37,10 @@ p, form
     height: 42px
     margin-right: 6px
 
-// show lead
-.show-lead
-  .avatar
-    height: 48px
-    width: 48px
-    border-radius: 2px
-  .name
-    font-size: 1rem
-    font-weight: bold
-    margin: 0 0.5rem 0 1rem
-  .screen-name
-    margin-right: 0.5rem
-
-  .description
-  .location
-  .url
-
-  .stat
-    display: inline
-    &:not(:last-of-type)
-      margin-right: 0.5rem
-      border-right: 1px solid #ccc
-      padding-right: 0.5rem
-
-    .key, .value
-      display: inline
-    .value
-      margin-left: 3px
-      font-weight: bold
-
-  // lead's tweets
-  .tweets
-    .sources
-
-    #sources-chart
-
-    .tweets-table
-      .tweet
-        font-size: 13px
-
-        .text
-        .source
-        .created_at
-
 // lead in collection
+// and twitter user in search results
 .edit_lead, .twitter-user
-  padding-left: 72px
-
-  padding-top: 0.4rem
-  padding-bottom: 0.4rem
+  padding: 1.2rem 0 1.2rem 72px
 
   .avatar
     float: left
@@ -99,32 +53,47 @@ p, form
   .twitter-url
     margin-right: 2px
     font-size: 15px
+
   .name
     font-weight: bold
   .screen-name
     margin: 0 6px
   .location
 
+  .refresh-link
+    margin: 0 6px
   .destroy-link
-    margin-left: 6px
-    visibility: hidden
-  &:hover .destroy-link
-    visibility: visible
 
+  .description-wrapper
+    margin-top: 0.2rem
   .description
-    p
-      margin: 0
+  .url
+    margin-left: 0.5rem
+    border-left: 1px solid #ddd
+    padding-left: 0.5rem
 
-  .stat
-    display: inline
-    &:not(:last-of-type)
+  .statistics
+    &.vertical .stat
+      display: block
+
+    margin: 0.2rem 0 0.4rem
+    .stat
       margin-right: 0.5rem
-      border-right: 1px solid #ccc
-      padding-right: 0.5rem
+      .key
+        @extend .muted
+      .value
+        font-weight: bold
+        margin-left: 3px
 
-    .key, .value
-      display: inline
-    .value
-      margin-left: 3px
-      font-weight: bold
+  .sources-wrapper
+    margin: 1rem 0
 
+  .tweets-wrapper
+
+  .tweets-table
+    .tweet
+      font-size: 13px
+      .text
+      .source
+      .created-at
+        min-width: 48px

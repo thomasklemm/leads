@@ -11,8 +11,7 @@ module ApplicationHelper
   def link_twitter_text(text)
     user_options = { username_include_symbol: true }
     text = Twitter::Autolink.auto_link_urls(text, url_target: :blank)
-    text = Twitter::Autolink.auto_link_usernames_or_lists(text, user_options)
-    simple_format(text)
+    Twitter::Autolink.auto_link_usernames_or_lists(text, user_options)
   end
 
   # Returns a font-awesome icon tag
@@ -51,6 +50,17 @@ module ApplicationHelper
     end
 
     # "<h3>#{ image_tag 'Tweetbox-Logo.png', width: 42, style: 'margin-right: 8px' }#{ text }</h3>".html_safe
+  end
+
+  def stat(key, value)
+    content_tag :span, class: 'stat' do
+      concat content_tag(:span, key, class: 'key')
+      concat content_tag(:span, value, class: 'value')
+    end
+  end
+
+  def extended_view?(lead)
+    current_path == lead_path(lead)
   end
 
   private
