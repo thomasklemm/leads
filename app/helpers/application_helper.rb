@@ -60,8 +60,13 @@ module ApplicationHelper
   end
 
   def extended_view?(lead)
-    current_path == lead_path(lead) &&
-    (request.method == 'GET' || request.referer == lead_url(lead))
+    return unless current_path == lead_path(lead)
+
+    if params[:action] == 'update'
+      request.referer == lead_url(lead)
+    else
+      true
+    end
   end
 
   private
