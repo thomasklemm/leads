@@ -1,6 +1,10 @@
 / leads/show
 - @lead &&= @lead.decorate
 
+= render @lead
+
+hr
+
 .show-lead
   / lead
   = link_to @lead.twitter_url do
@@ -60,7 +64,7 @@
       small from #{ pluralize @lead.tweets.size, 'tweet' }
 
     .sources
-      = @lead.sources
+      = @lead.weighted_sources
 
     = pie_chart @lead.grouped_tweets_sources, id: 'sources-chart'
 
