@@ -32,6 +32,10 @@ Leads::Application.configure do
   # Generate digests for assets URLs.
   config.assets.digest = true
 
+  # Cache assets in Memcached on Heroku
+  # to speed up deploys
+  config.assets.cache_store = :dalli_store
+
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 
