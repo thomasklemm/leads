@@ -43,7 +43,7 @@ class LeadsController < ApplicationController
   # in the user timeline from Twitter
   def refresh
     @lead.fetch_user
-    @lead.fetch_user_timeline
+    @lead.fetch_user_timeline(200)
 
     redirect_to @lead,
       notice: "Lead @#{ @lead.screen_name } has been updated from Twitter."
@@ -51,7 +51,7 @@ class LeadsController < ApplicationController
 
   def destroy
     @lead.destroy
-    redirect_to :back,
+    redirect_to redirect_params,
       notice: "Lead @#{ @lead.screen_name } has been removed."
   end
 
@@ -66,7 +66,12 @@ class LeadsController < ApplicationController
     params.require(:lead).permit(:score)
   end
 
+  # Assigns score unless set, too.
   def score_params
     params[:score] ||= :unscored
+  end
+
+  def redirect_params
+    params[:redirect_to] || :back
   end
 end

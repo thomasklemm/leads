@@ -10,6 +10,10 @@ class LeadDecorator < Draper::Decorator
     h.link_twitter_text(model.description)
   end
 
+  def url
+    h.link_twitter_text(model.url)
+  end
+
   def joined_twitter_on
     joined_twitter_at.to_date.to_s(:long)
   end

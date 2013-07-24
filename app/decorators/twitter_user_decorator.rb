@@ -1,5 +1,7 @@
 # Decorates Twitter::User records
 class TwitterUserDecorator
+  include UrlExpander
+
   attr_accessor :user
 
   def initialize(user)
@@ -9,7 +11,6 @@ class TwitterUserDecorator
   delegate :screen_name,
            :name,
            :location,
-           :url,
            to: :user
 
   def lead
@@ -25,7 +26,19 @@ class TwitterUserDecorator
   end
 
   def description
-    h.link_twitter_text(user.description)
+    @description ||= begin
+      description_urls = user.attrs[:entities].try(:fetch, :description).try(:fetch, :urls, nil)
+      description = description_urls ? expand_urls(user.description, description_urls) : user.description
+      h.link_twitter_text(description)
+    end
+  end
+
+  def url
+    @url ||= begin
+      url_urls = user.attrs[:entities].try(:fetch, :url, nil).try(:fetch, :urls, nil)
+      url = url_urls ? expand_urls(user.url, url_urls) : user.url
+      h.link_twitter_text(url)
+    end
   end
 
   def lead_path
