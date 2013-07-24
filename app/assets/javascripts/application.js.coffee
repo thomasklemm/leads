@@ -27,12 +27,12 @@
 
 jQuery.fn.submitOnCheck = ->
   # @find('input[type=submit]').remove()
-  @find('input[type=radio]').hide().click ->
+  @find('input[type=radio]').hide()
+  @find('input[type=radio]').click ->
     $(this).parents('form').submit()
   # Return this for chaining
   this
 
 jQuery ->
-
   # Submit forms on radio selection
   $('.edit_lead').submitOnCheck()

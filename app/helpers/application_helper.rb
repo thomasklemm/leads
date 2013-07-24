@@ -60,7 +60,8 @@ module ApplicationHelper
   end
 
   def extended_view?(lead)
-    current_path == lead_path(lead)
+    current_path == lead_path(lead) &&
+    (request.method == 'GET' || request.referer == lead_url(lead))
   end
 
   private
