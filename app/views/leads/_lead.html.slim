@@ -1,5 +1,6 @@
 / lead
 - lead &&= lead.decorate
+- tweets = lead.ordered_tweets
 
 = form_for lead, remote: true do |f|
   / avatar
@@ -37,7 +38,7 @@
 
     - if extended_view?(lead)
       = stat('Verified Account:', true) if lead.verified?
-      = stat("Response Rate in #{ lead.tweets.size } Tweets :", lead.response_rate) if lead.tweets.size > 1
+      = stat("Response Rate in #{ tweets.size } Tweets :", lead.response_rate) if tweets.size > 1
       = stat('Joined Twitter:', lead.joined_twitter_on)
       / = stat('Friends:', lead.friends_count)
       = stat('Profile Lang:', lead.lang)
@@ -64,20 +65,20 @@
 
       .sources = lead.weighted_sources
 
-      / = pie_chart lead.grouped_tweets_sources, id: 'sources-chart'
+      = pie_chart lead.grouped_sources_for_chart, id: 'sources-chart'
 
     / tweets
     .tweets-wrapper
       h5
         ' Most recent tweets
-        small #{ pluralize lead.tweets.size, 'tweet' }
+        small #{ pluralize tweets.size, 'tweet' }
 
       table class='tweets-table table'
         tbody
-        - lead.ordered_tweets.each do |tweet|
+        - tweets.each do |tweet|
           - tweet &&= tweet.decorate
           tr.tweet
             td = link_to icon_tag(:twitter), tweet.twitter_url, class: 'twitter-url'
             td.text == tweet.text
-            td.source = tweet.source
+            td.source == tweet.source
             td.created-at = tweet.created_at

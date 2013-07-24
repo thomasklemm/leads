@@ -58,12 +58,15 @@ gem 'enumerize'
 gem 'kaminari'
 
 group :development do
+  # Debug Views
   gem 'better_errors'
   gem 'binding_of_caller'
 
   # LiveReload
   gem 'guard-livereload'
   gem 'rack-livereload'
+
+  gem 'bullet'
 end
 
 group :development, :test do

@@ -21,6 +21,10 @@ class Lead < ActiveRecord::Base
   # Pagination
   paginates_per 30
 
+  def ordered_tweets
+    tweets.includes(:lead).order(created_at: :desc)
+  end
+
   # Returns a lead record
   def self.from_twitter(user, opts={})
     return unless user
