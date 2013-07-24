@@ -44,9 +44,12 @@ class Lead < ActiveRecord::Base
     lead ||= fetch_by_screen_name(screen_name)
   end
 
+  # Fetches the lead and the most recent 20 tweets
   def self.fetch_by_screen_name(screen_name)
     twitter_user = Twitter.user(screen_name)
-    self.from_twitter(twitter_user)
+    lead = self.from_twitter(twitter_user)
+    lead.fetch_user_timeline(20)
+    lead
   rescue Twitter::Error::NotFound
     nil
   end
@@ -57,12 +60,12 @@ class Lead < ActiveRecord::Base
     Lead.from_twitter(user)
   end
 
-  # Removes all current tweets
-  # and fetches the most recent 200 tweets for the given user
-  def fetch_user_timeline
-    tweets.destroy_all
-
-    statuses = Twitter.user_timeline(screen_name, count: 200)
+  # Fetches the most recent
+  # given number of tweets for the given user
+  # Defaults to 200 tweets
+  def fetch_user_timeline(n=200)
+    tweets.destroy_all if n == 200
+    statuses = Twitter.user_timeline(screen_name, count: n)
     Tweet.many_from_twitter(statuses)
   end
 

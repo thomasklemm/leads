@@ -25,12 +25,19 @@ class LeadDecorator < Draper::Decorator
     end
   end
 
-  def source
-    tweets.first.try(:source).try(:html_safe)
-  end
-
   def sources
     @sources ||= begin
+      sources = tweets.pluck(:source)
+      sources &&= sources.each_with_object({}) { |source, h| h[source] ||= 0; h[source] +=1 }
+      sources &&= sources.sort_by { |k, v| v}.reverse.map(&:first)
+      sources &&= sources.to_sentence.html_safe
+    end
+  end
+
+  alias_method :source, :sources
+
+  def weighted_sources
+    @weighted_sources ||= begin
       sources = tweets.group("source").count.sort_by(&:last).reverse
       sources &&= sources.map{ |source, count| [ source, h.number_to_percentage((count * 100 / sources.map(&:last).sum.to_f), precision: 0) ] }
       sources &&= sources.map{ |source, percentage| "#{ source } (#{ percentage })" }
